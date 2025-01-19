@@ -2,11 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import CustomComponent from '../../components/CustomComponent';
-
-// カスタムコンポーネントを登録
-const components = {
-    CustomComponent,
-};
+import MDXComponents from '@/app/components/MDXComponents';
 
 type PageProps = {
     params: {
@@ -47,7 +43,7 @@ async function loadMDXContent(slug: string) {
 
         const { content } = await compileMDX({
             source: mdxSource,
-            components,
+            components: MDXComponents,
         });
 
         return content;

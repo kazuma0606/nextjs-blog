@@ -1,11 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { compileMDX } from 'next-mdx-remote/rsc';
-
-// カスタムコンポーネント（必要に応じて拡張可能）
-const components = {
-  h1: (props: any) => <h1 style={{ color: 'blue' }} {...props} />,
-};
+import MDXComponents from '../components/MDXComponents';
 
 async function loadMDXContent() {
   // MDX ファイルのパス
@@ -22,7 +18,7 @@ async function loadMDXContent() {
   // MDX をコンパイルして React コンポーネント化
   const { content } = await compileMDX({
     source: mdxSource,
-    components,
+    components: MDXComponents,
     options: {
       // 必要に応じて MDX オプションを追加
     },
